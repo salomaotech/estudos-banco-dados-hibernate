@@ -1,0 +1,6 @@
+model: Contém as entidades JPA, que representam as tabelas do banco de dados.
+repository: Armazena as interfaces para operações de persistência de dados.
+service: Contém a lógica de negócios e manipulação de dados.
+controller: Responsável pela interface de usuário, como APIs REST.
+dto: Utilizado para transferir dados sem expor entidades diretamente.
+exception: Centraliza o tratamento de exceções na aplicação.

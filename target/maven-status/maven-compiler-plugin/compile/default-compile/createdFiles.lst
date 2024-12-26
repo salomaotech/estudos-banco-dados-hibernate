@@ -1,2 +1,6 @@
-com\salomaotech\App.class
 com\salomaotech\repository\JpaUtil.class
+com\salomaotech\App.class
+com\salomaotech\model\cliente\Cliente.class
+com\salomaotech\repository\cliente\ClienteRepository.class
+com\salomaotech\model\cliente\Cliente_.class
+com\salomaotech\repository\Repository.class

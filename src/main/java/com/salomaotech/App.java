@@ -1,10 +1,13 @@
 package com.salomaotech;
 
 import com.salomaotech.model.cliente.Cliente;
+import com.salomaotech.model.compras.Carrinho;
+import com.salomaotech.model.compras.Produto;
 import com.salomaotech.model.fatura.Fatura;
-import static com.salomaotech.model.fatura.Fatura_.cliente;
 import com.salomaotech.repository.JpaUtil;
 import com.salomaotech.repository.cliente.ClienteRepository;
+import com.salomaotech.repository.compras.CarrinhoRepository;
+import com.salomaotech.repository.compras.ProdutoRepository;
 import com.salomaotech.repository.fatura.FaturaRepository;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -99,9 +102,37 @@ public class App {
 
     }
 
+    private static void cadastraCompra() {
+
+        JpaUtil jpaUtil = new JpaUtil();
+        ClienteRepository clienteRepository = new ClienteRepository(jpaUtil);
+        ProdutoRepository produtoRepository = new ProdutoRepository(jpaUtil);
+        CarrinhoRepository carrinhoRepository = new CarrinhoRepository(jpaUtil);
+
+        Cliente cliente = new Cliente();
+        cliente.setNome("Salomão Silva");
+        cliente.setTelefone("62 0000-0000");
+        cliente.setEmail("salomao@email.com");
+
+        Produto produto = new Produto();
+        produto.setNome("Mouse HP");
+        produto.setPreco(new BigDecimal(100));
+
+        Carrinho carrinho = new Carrinho();
+        carrinho.setCliente(cliente);
+        carrinho.getProdutos().add(produto);
+
+        clienteRepository.save(cliente);
+        produtoRepository.save(produto);
+        carrinhoRepository.save(carrinho);
+
+        jpaUtil.close();
+
+    }
+
     public static void main(String[] args) {
 
-        save();
+        cadastraCompra();
 
     }
 

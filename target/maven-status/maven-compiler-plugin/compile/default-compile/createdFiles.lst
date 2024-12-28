@@ -1,9 +1,0 @@
-com\salomaotech\repository\JpaUtil.class
-com\salomaotech\App.class
-com\salomaotech\model\fatura\Fatura.class
-com\salomaotech\model\cliente\Cliente.class
-com\salomaotech\repository\cliente\ClienteRepository.class
-com\salomaotech\model\cliente\Cliente_.class
-com\salomaotech\repository\fatura\FaturaRepository.class
-com\salomaotech\model\fatura\Fatura_.class
-com\salomaotech\repository\Repository.class

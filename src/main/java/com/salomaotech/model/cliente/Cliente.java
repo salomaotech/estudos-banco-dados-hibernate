@@ -13,6 +13,10 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String nome;
+    private String telefone;
+    private String email;
+
     public Long getId() {
         return id;
     }
@@ -20,10 +24,6 @@ public class Cliente implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    private String nome;
-    private String telefone;
-    private String email;
 
     public String getNome() {
         return nome;

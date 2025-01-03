@@ -9,6 +9,7 @@ import com.salomaotech.repository.cliente.ClienteRepository;
 import com.salomaotech.repository.compras.CarrinhoRepository;
 import com.salomaotech.repository.compras.ProdutoRepository;
 import com.salomaotech.repository.fatura.FaturaRepository;
+import com.salomaotech.services.OperacoesLote;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -19,9 +20,10 @@ import java.util.List;
  */
 public class App {
 
+    private static JpaUtil jpaUtil;
+
     public static void save() {
 
-        JpaUtil jpaUtil = new JpaUtil();
         ClienteRepository clienteRepository = new ClienteRepository(jpaUtil);
         FaturaRepository faturaRepository = new FaturaRepository(jpaUtil);
 
@@ -45,7 +47,6 @@ public class App {
 
     public static void update() {
 
-        JpaUtil jpaUtil = new JpaUtil();
         ClienteRepository clienteRepository = new ClienteRepository(jpaUtil);
 
         Cliente cliente = new Cliente();
@@ -61,7 +62,6 @@ public class App {
 
     public static void delete() {
 
-        JpaUtil jpaUtil = new JpaUtil();
         ClienteRepository clienteRepository = new ClienteRepository(jpaUtil);
 
         clienteRepository.delete(1L, Cliente.class);
@@ -71,7 +71,6 @@ public class App {
 
     public static void findById() {
 
-        JpaUtil jpaUtil = new JpaUtil();
         ClienteRepository clienteRepository = new ClienteRepository(jpaUtil);
 
         Cliente cliente = (Cliente) clienteRepository.findById(1L, Cliente.class);
@@ -85,7 +84,6 @@ public class App {
 
     public static void findAll() {
 
-        JpaUtil jpaUtil = new JpaUtil();
         ClienteRepository clienteRepository = new ClienteRepository(jpaUtil);
 
         List<Cliente> clientes = clienteRepository.findAll(Cliente.class);
@@ -104,7 +102,6 @@ public class App {
 
     private static void cadastraCompra() {
 
-        JpaUtil jpaUtil = new JpaUtil();
         ClienteRepository clienteRepository = new ClienteRepository(jpaUtil);
         ProdutoRepository produtoRepository = new ProdutoRepository(jpaUtil);
         CarrinhoRepository carrinhoRepository = new CarrinhoRepository(jpaUtil);
@@ -126,13 +123,21 @@ public class App {
         produtoRepository.save(produto);
         carrinhoRepository.save(carrinho);
 
-        jpaUtil.close();
-
     }
 
     public static void main(String[] args) {
 
+        // Abre a conexão com o banco de dados
+        jpaUtil = new JpaUtil();
+
+        // Cadastro aqui
         cadastraCompra();
+
+        // Roda operações em lote
+        new OperacoesLote(jpaUtil).atualizarEmailsClientes();
+
+        // Fecha a conexão
+        jpaUtil.close();
 
     }
 

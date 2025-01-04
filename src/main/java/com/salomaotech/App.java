@@ -31,6 +31,7 @@ public class App {
         cliente.setNome("Salomão Silva");
         cliente.setTelefone("62 0000-0000");
         cliente.setEmail("salomao@email.com");
+        cliente.setDataNascimento(LocalDate.of(1989, 12, 9));
 
         Fatura fatura = new Fatura();
         fatura.setIsPago(false);
@@ -54,6 +55,7 @@ public class App {
         cliente.setNome("Salomão Silva");
         cliente.setTelefone("62 1111-1111");
         cliente.setEmail("salomao@email.com");
+        cliente.setDataNascimento(LocalDate.of(1989, 12, 9));
 
         clienteRepository.update(cliente);
         jpaUtil.close();
@@ -110,6 +112,7 @@ public class App {
         cliente.setNome("Salomão Silva");
         cliente.setTelefone("62 0000-0000");
         cliente.setEmail("salomao@email.com");
+        cliente.setDataNascimento(LocalDate.of(1989, 12, 9));
 
         Produto produto = new Produto();
         produto.setNome("Mouse HP");
